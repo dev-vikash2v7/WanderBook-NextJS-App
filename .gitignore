@@ -2,9 +2,11 @@
 
 # dependencies
 /node_modules
+/.yarn/
+.next 
 /.pnp
 .pnp.js
-.yarn/install-state.gz
+.yamrc.yml
 
 # testing
 /coverage
@@ -24,6 +26,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.pnpm-debug.log*
 
 # local env files
 .env*.local
