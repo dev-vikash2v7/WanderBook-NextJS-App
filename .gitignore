@@ -3,9 +3,11 @@
 # dependencies
 /node_modules
 .yarn
+
 /.yarn 
 /.yarn/
 .next 
+
 /.pnp
 .pnp.js
 .yamrc.yml
