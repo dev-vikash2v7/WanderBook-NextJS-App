@@ -4,7 +4,7 @@ const verify = (req,res,next) => {
     const { token } = req.headers;
     
     if (token) {
-      jwt.verify(token, process.env.tsec, function(err, verified) {
+      jwt.verify(token, process.env.JWT_SECRET, function(err, verified) {
           if (err) {
               return res.status(401).json({"error": true, "message": 'Unauthorized access. Login and try again' });
           }

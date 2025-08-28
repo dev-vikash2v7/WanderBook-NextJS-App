@@ -1,6 +1,5 @@
 import React from "react";
-import { Slide } from "react-slideshow-image";
-import "react-slideshow-image/dist/styles.css";
+import ImageSlider from "react-simple-image-slider";
 import Link from "next/link";
 import { Box, Button, Image, Text } from "@chakra-ui/react";
 
@@ -29,8 +28,8 @@ export const Slideshow = ({ image, no, tag, subTag }) => {
           {tag}
         </Text>
         <p style={{ marginBottom: "8px" ,marginLeft:"10px" }} >{subTag}</p>
-        <Slide slidesToShow={no} autoplay={false} className="slidingCont">
-          {image.map((slideImage, index) => (
+        <Box display="flex" flexWrap="wrap" gap="10px">
+          {image.slice(0, no).map((slideImage, index) => (
             <Link
               style={{ textDecoration: "none" }}
               href={`/property?city=${slideImage.caption}`}
@@ -40,13 +39,12 @@ export const Slideshow = ({ image, no, tag, subTag }) => {
                 className="each-slide"
                 key={index}
                 margin="0px 10px 0px 10px"
-                
+                width="200px"
               >
                 <Box
                   height="auto"
-                  // marginRight={"10px"}
                 >
-                  <img src={slideImage.url} alt="v" />
+                  <img src={slideImage.url} alt="v" style={{ width: "100%", height: "150px", objectFit: "cover" }} />
                   <Box
                     display={{
                       base: "none",
@@ -81,7 +79,7 @@ export const Slideshow = ({ image, no, tag, subTag }) => {
               </Box>
             </Link>
           ))}
-        </Slide>
+        </Box>
       </Box>
     </Box>
   );

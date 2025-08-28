@@ -16,7 +16,7 @@ export default async function handler(req, res) {
     if (!refreshToken) return res.status(401).send("Unauthorized access");
 
     try {
-      jwt.verify(refreshToken, process.env.rtsec, function (err, verified) {
+      jwt.verify(refreshToken, process.env.JWT_SECRET, function (err, verified) {
         if (err) {
           return res
             .status(401)
@@ -30,9 +30,9 @@ export default async function handler(req, res) {
 
       const token = jwt.sign(
         { id: user._id, name: user.name, role: user.role },
-        process.env.tsec,
+        process.env.JWT_SECRET,
         {
-          expiresIn: process.env.tl,
+          expiresIn: process.env.JWT_EXPIRES_IN,
         }
       );
 

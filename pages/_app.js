@@ -1,31 +1,33 @@
+
 import '../styles/globals.css'
 import { ChakraProvider  } from '@chakra-ui/react';
 import AuthContextProvider from '../context/AuthContextProvider';
 import Footer from '../components/Footer';
-import React ,{ useState , useEffect } from "react"
+import { useState , useEffect } from "react"
 import LoadingScreen from '../components/pre_loader/loadingScreen';
 // import {ToastContainer} from 'react-nextjs-toast';
 import GuestContextProvider from "../context/GuestContext";
 import { theme } from '../theme';
 
-// Custom theme for WanderBook
-
 function MyApp({ Component, pageProps }) {
 
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
-      setLoading(true);
+      setLoading(false);
     },2000);
   }, []);
 
 
   return (
 <>
-    {loading?
-      (<ChakraProvider theme={theme}>
+    {!loading?
+      (
+      
+        // <ErrorBoundary fallback={<p>Something went wrong</p>}>
+      <ChakraProvider theme={theme}>
       <AuthContextProvider>
           <GuestContextProvider>
       <Component {...pageProps} />
@@ -33,7 +35,9 @@ function MyApp({ Component, pageProps }) {
       <Footer />
         </GuestContextProvider>
       </AuthContextProvider>
-    </ChakraProvider>):( <LoadingScreen /> )
+    </ChakraProvider>
+    // </ErrorBoundary>
+    ):( <LoadingScreen /> )
     }
   </>
   )
